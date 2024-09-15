@@ -1,0 +1,190 @@
+
+Unhandled Exception:
+Nested exception detected.
+Original Exception: at System.Reflection.RuntimeMethodInfo.Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo) [0x00037] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Reflection.MethodBase.Invoke (object,object[]) [0x00000] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at DotnetTest.Router/<>c__DisplayClass3_1`1<DotnetTest.Controller.TestController>.<RegisterController>b__0 (Fermyon.Spin.Sdk.HttpRequest,System.Collections.Generic.Dictionary`2<string, string>) [0x0003f] in <8e18625a331044f19b8fa1309234f43b>:0
+at DotnetTest.Router.Route (Fermyon.Spin.Sdk.HttpRequest) [0x0004e] in <8e18625a331044f19b8fa1309234f43b>:0
+at DotnetTest.Handler.HandleHttpRequest (Fermyon.Spin.Sdk.HttpRequest) [0x00051] in <8e18625a331044f19b8fa1309234f43b>:0
+
+Nested exception:at (wrapper managed-to-native) System.Reflection.CustomAttribute.IsDefinedInternal (System.Reflection.ICustomAttributeProvider,System.Type) [0x00000] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Reflection.CustomAttribute.IsDefined (System.Reflection.ICustomAttributeProvider,System.Type,bool) [0x00065] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.RuntimeType.IsDefined (System.Type,bool) [0x0002a] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Diagnostics.StackTrace.ToString (System.Diagnostics.StackTrace/TraceFormat,System.Text.StringBuilder) [0x000c2] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Diagnostics.StackTrace.ToString (System.Diagnostics.StackTrace/TraceFormat) [0x0000b] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Exception.GetStackTrace () [0x00000] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Exception.get_StackTrace () [0x00023] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Exception.ToString () [0x00030] in <4c8da4ecadb8468293bc75462795e8c4>:0
+
+
+
+Unhandled Exception:
+System.TypeLoadException: Could not resolve type with token 01000010 from typeref (expected class 'System.Runtime.CompilerServices.NullableContextAttribute' in assembly 'System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a')
+   at System.Reflection.CustomAttribute.IsDefined(ICustomAttributeProvider obj, Type attributeType, Boolean inherit)
+   at System.RuntimeType.IsDefined(Type attributeType, Boolean inherit)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat, StringBuilder sb)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat)
+   at System.Exception.GetStackTrace()
+   at System.Exception.get_StackTrace()
+   at System.Exception.ToString()
+
+Unhandled Exception:
+System.TypeLoadException: Could not resolve type with token 01000010 from typeref (expected class 'System.Runtime.CompilerServices.NullableContextAttribute' in assembly 'System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a')
+   at System.Reflection.CustomAttribute.IsDefined(ICustomAttributeProvider obj, Type attributeType, Boolean inherit)
+   at System.RuntimeType.IsDefined(Type attributeType, Boolean inherit)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat, StringBuilder sb)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat)
+   at System.Exception.GetStackTrace()
+   at System.Exception.get_StackTrace()
+   at System.Exception.ToString()
+[ERROR] FATAL UNHANDLED EXCEPTION: System.TypeLoadException: Could not resolve type with token 01000010 from typeref (expected class 'System.Runtime.CompilerServices.NullableContextAttribute' in assembly 'System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a')
+   at System.Reflection.CustomAttribute.IsDefined(ICustomAttributeProvider obj, Type attributeType, Boolean inherit)
+   at System.RuntimeType.IsDefined(Type attributeType, Boolean inherit)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat, StringBuilder sb)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat)
+   at System.Exception.GetStackTrace()
+   at System.Exception.get_StackTrace()
+   at System.Exception.ToString()
+
+Unhandled Exception:
+Nested exception detected.
+Original Exception: at System.Reflection.RuntimeMethodInfo.Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo) [0x00037] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Reflection.MethodBase.Invoke (object,object[]) [0x00000] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at DotnetTest.Router/<>c__DisplayClass3_1`1<DotnetTest.Controller.TestController>.<RegisterController>b__0 (Fermyon.Spin.Sdk.HttpRequest,System.Collections.Generic.Dictionary`2<string, string>) [0x0003f] in <8e18625a331044f19b8fa1309234f43b>:0
+at DotnetTest.Router.Route (Fermyon.Spin.Sdk.HttpRequest) [0x0004e] in <8e18625a331044f19b8fa1309234f43b>:0
+at DotnetTest.Handler.HandleHttpRequest (Fermyon.Spin.Sdk.HttpRequest) [0x00051] in <8e18625a331044f19b8fa1309234f43b>:0
+
+Nested exception:at (wrapper managed-to-native) System.Reflection.CustomAttribute.IsDefinedInternal (System.Reflection.ICustomAttributeProvider,System.Type) [0x00000] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Reflection.CustomAttribute.IsDefined (System.Reflection.ICustomAttributeProvider,System.Type,bool) [0x00065] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.RuntimeType.IsDefined (System.Type,bool) [0x0002a] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Diagnostics.StackTrace.ToString (System.Diagnostics.StackTrace/TraceFormat,System.Text.StringBuilder) [0x000c2] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Diagnostics.StackTrace.ToString (System.Diagnostics.StackTrace/TraceFormat) [0x0000b] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Exception.GetStackTrace () [0x00000] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Exception.get_StackTrace () [0x00023] in <4c8da4ecadb8468293bc75462795e8c4>:0
+at System.Exception.ToString () [0x00030] in <4c8da4ecadb8468293bc75462795e8c4>:0
+
+
+
+Unhandled Exception:
+System.TypeLoadException: Could not resolve type with token 01000010 from typeref (expected class 'System.Runtime.CompilerServices.NullableContextAttribute' in assembly 'System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a')
+   at System.Reflection.CustomAttribute.IsDefined(ICustomAttributeProvider obj, Type attributeType, Boolean inherit)
+   at System.RuntimeType.IsDefined(Type attributeType, Boolean inherit)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat, StringBuilder sb)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat)
+   at System.Exception.GetStackTrace()
+   at System.Exception.get_StackTrace()
+   at System.Exception.ToString()
+
+Unhandled Exception:
+System.TypeLoadException: Could not resolve type with token 01000010 from typeref (expected class 'System.Runtime.CompilerServices.NullableContextAttribute' in assembly 'System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a')
+   at System.Reflection.CustomAttribute.IsDefined(ICustomAttributeProvider obj, Type attributeType, Boolean inherit)
+   at System.RuntimeType.IsDefined(Type attributeType, Boolean inherit)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat, StringBuilder sb)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat)
+   at System.Exception.GetStackTrace()
+   at System.Exception.get_StackTrace()
+   at System.Exception.ToString()
+[ERROR] FATAL UNHANDLED EXCEPTION: System.TypeLoadException: Could not resolve type with token 01000010 from typeref (expected class 'System.Runtime.CompilerServices.NullableContextAttribute' in assembly 'System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a')
+   at System.Reflection.CustomAttribute.IsDefined(ICustomAttributeProvider obj, Type attributeType, Boolean inherit)
+   at System.RuntimeType.IsDefined(Type attributeType, Boolean inherit)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat, StringBuilder sb)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat)
+   at System.Exception.GetStackTrace()
+   at System.Exception.get_StackTrace()
+   at System.Exception.ToString()
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)
+
+Unhandled Exception:
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at DotnetTest.Router.<>c__DisplayClass3_1`1[[DotnetTest.Controller.TestController, DotnetTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].<RegisterController>b__0(HttpRequest req, Dictionary`2 routeParams)
+   at DotnetTest.Router.Route(HttpRequest request)
+   at DotnetTest.Handler.HandleHttpRequest(HttpRequest request)

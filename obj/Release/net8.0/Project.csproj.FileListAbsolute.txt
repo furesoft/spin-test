@@ -1,0 +1,12 @@
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\bin\Release\net8.0\DotnetTest.deps.json
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\bin\Release\net8.0\DotnetTest.dll
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\bin\Release\net8.0\DotnetTest.pdb
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\obj\Release\net8.0\Project.csproj.AssemblyReference.cache
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\obj\Release\net8.0\Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\obj\Release\net8.0\Project.AssemblyInfoInputs.cache
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\obj\Release\net8.0\Project.AssemblyInfo.cs
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\obj\Release\net8.0\Project.csproj.CoreCompileInputs.cache
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\obj\Release\net8.0\DotnetTest.dll
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\obj\Release\net8.0\refint\DotnetTest.dll
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\obj\Release\net8.0\DotnetTest.pdb
+C:\Users\chris\Downloads\spin-v2.7.0-windows-amd64\dotnet-test\obj\Release\net8.0\ref\DotnetTest.dll
