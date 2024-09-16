@@ -8,6 +8,7 @@ using Fermyon.Spin.Sdk;
 using PipelineNet.MiddlewareResolver;
 using PipelineNet.Pipelines;
 using Project.Core.Attributes;
+using Project.Core.Attributes.Verbs;
 using HttpMethod = Fermyon.Spin.Sdk.HttpMethod;
 
 namespace Project.Core;

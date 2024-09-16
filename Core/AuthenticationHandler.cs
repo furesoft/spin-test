@@ -23,6 +23,7 @@ public class AuthenticationHandler : IMiddleware<HttpContext>
                     StatusCode = HttpStatusCode.Forbidden,
                     BodyAsString = "You are not authorized to access this resource."
                 };
+
                 return;
             }
         }
