@@ -85,8 +85,6 @@ public static class Router
         var methodParams = method.GetParameters();
         var args = new List<object>();
 
-        Console.WriteLine(JsonSerializer.Serialize(context.Url));
-
         var queryParams = HttpUtility.ParseQueryString(context.Url.Query.Split('?').LastOrDefault() ?? "");
 
         foreach (var param in methodParams)
@@ -106,10 +104,20 @@ public static class Router
                 continue;
             }
 
+            InjectRequest(context, param, args);
+
             args.Add(param.HasDefaultValue ? param.DefaultValue : null);
         }
 
         return args;
+    }
+
+    private static void InjectRequest(HttpContext context, ParameterInfo param, List<object> args)
+    {
+        if (param.ParameterType == typeof(HttpRequest))
+        {
+            args.Add(context.Request);
+        }
     }
 
     private static bool AddHeader(ParameterInfo parameterInfo, List<object> args, IReadOnlyDictionary<string,string> requestHeaders)
