@@ -28,7 +28,7 @@ public static class Router
     public static void RegisterController<T>()
     {
         var methods = typeof(T).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
-        var controllerInstance = Activator.CreateInstance(typeof(T));
+        var controllerInstance = Container.Shared.GetService(typeof(T));
 
         foreach (var method in methods)
         {
