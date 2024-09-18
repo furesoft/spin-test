@@ -1,6 +1,4 @@
-namespace Project.Core.Health.Checks;
-
-using Project.Core.Health;
+namespace DotnetTest.Core.Health.Checks;
 
 public class GeneralCheck : IHealthCheck
 {

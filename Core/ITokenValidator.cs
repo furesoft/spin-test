@@ -1,4 +1,4 @@
-namespace Project.Core;
+namespace DotnetTest.Core;
 
 public interface ITokenValidator
 {

@@ -1,21 +1,14 @@
-using Project.Core.Attributes;
-using Project.Core.Attributes.Verbs;
+using System.Net;
+using DotnetTest.Core.Attributes.Verbs;
 
-namespace Project.Core.Health;
+namespace DotnetTest.Core.Health;
 
 [HttpGet("/health")]
-public class HealthController
+public class HealthController(HealthCheckManager healthCheckManager)
 {
-    private readonly HealthCheckManager _healthCheckManager;
-
-    public HealthController(HealthCheckManager healthCheckManager)
-    {
-        _healthCheckManager = healthCheckManager;
-    }
-
     [HttpGet("/")]
     public object GetIndex()
     {
-        return _healthCheckManager.CheckAll();
+        return healthCheckManager.CheckAll();
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System.Net;
+using DotnetTest.Controller;
+using DotnetTest.Core;
+using DotnetTest.Core.Health;
 using Fermyon.Spin.Sdk;
-using Project.Controller;
-using Project.Core;
 
-namespace Project;
+namespace DotnetTest;
 
 public static class Handler
 {
@@ -33,12 +34,12 @@ public static class Handler
     }
 
     static Handler()
-    {    
-        ServiceContainer.Current.Register<Project.Core.Health.HealthCheckManager> ();
+    {
+        ServiceContainer.Current.Register<HealthCheckManager> ();
 
         Router.Middleware.Add<AuthenticationHandler>();
 
-        Router.RegisterController<TestController>(); 
-        Router.RegisterController<Project.Core.Health.HealthController>();
+        Router.RegisterController<TestController>();
+        Router.RegisterController<HealthController>();
     }
 }

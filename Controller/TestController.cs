@@ -1,7 +1,7 @@
-﻿using Project.Core.Attributes;
-using Project.Core.Attributes.Verbs;
+﻿using DotnetTest.Core.Attributes;
+using DotnetTest.Core.Attributes.Verbs;
 
-namespace Project.Controller;
+namespace DotnetTest.Controller;
 
 public class TestController
 {

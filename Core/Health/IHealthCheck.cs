@@ -1,4 +1,4 @@
-namespace Project.Core.Health;
+namespace DotnetTest.Core.Health;
 
 public interface IHealthCheck
 {

@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Security.Principal;
 using Fermyon.Spin.Sdk;
 
-namespace Project.Core;
+namespace DotnetTest.Core;
 
 public class HttpContext(HttpRequest request, HttpResponse response, MethodInfo method, Uri url)
 {

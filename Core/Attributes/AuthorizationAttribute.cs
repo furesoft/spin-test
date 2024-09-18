@@ -1,4 +1,4 @@
-﻿namespace Project.Core.Attributes;
+﻿namespace DotnetTest.Core.Attributes;
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = false)]
 public class AuthorizationAttribute(params string[] roles) : Attribute

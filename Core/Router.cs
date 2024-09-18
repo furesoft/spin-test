@@ -1,30 +1,22 @@
 ﻿using System.Collections.Specialized;
 using System.Net;
 using System.Reflection;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Web;
+using DotnetTest.Core.Attributes;
+using DotnetTest.Core.Attributes.Verbs;
 using Fermyon.Spin.Sdk;
+using Newtonsoft.Json;
 using PipelineNet.MiddlewareResolver;
 using PipelineNet.Pipelines;
-using Project.Core.Attributes;
-using Project.Core.Attributes.Verbs;
 using HttpMethod = Fermyon.Spin.Sdk.HttpMethod;
 
-namespace Project.Core;
+namespace DotnetTest.Core;
 
 public static class Router
 {
     private static readonly Dictionary<(HttpMethod, string), Func<HttpRequest, Dictionary<string, string>, HttpResponse>> Routes = new();
 
     public static readonly IPipeline<HttpContext> Middleware = new Pipeline<HttpContext>(new ActivatorMiddlewareResolver());
-
-    static JsonSerializerOptions options = new JsonSerializerOptions
-    {
-        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-        WriteIndented = true,
-        PropertyNameCaseInsensitive = true
-    };
 
     public static void RegisterRoute(HttpMethod method, string urlPattern,
         Func<HttpRequest, Dictionary<string, string>, HttpResponse> handler)
@@ -77,9 +69,17 @@ public static class Router
                 { "Content-Type", "text/plain" }
             };
         }
+        else if (result is byte[] bytes)
+        {
+            response.BodyAsBytes = bytes;
+            response.Headers = new Dictionary<string, string>()
+            {
+                { "Content-Type", "application/octet-stream" }
+            };
+        }
         else
         {
-            response.BodyAsString = JsonSerializer.Serialize(result, options);
+            response.BodyAsString = JsonConvert.SerializeObject(result);
             response.Headers = new Dictionary<string, string>
             {
                 { "Content-Type", "application/json" }
@@ -148,7 +148,7 @@ public static class Router
             }
             else
             {
-                args.Add(JsonSerializer.Serialize(context.Request.Body.AsString(), parameterInfo.ParameterType, options));
+                args.Add(JsonConvert.DeserializeObject(context.Request.Body.AsString(), parameterInfo.ParameterType));
             }
 
             return true;

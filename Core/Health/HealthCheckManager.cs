@@ -1,6 +1,6 @@
-namespace Project.Core.Health;
+using DotnetTest.Core.Health.Checks;
 
-using Project.Core.Health.Checks;
+namespace DotnetTest.Core.Health;
 
 public class HealthCheckManager
 {
@@ -16,15 +16,10 @@ public class HealthCheckManager
         _healthChecks.Add(name, healthCheck);
     }
 
-    public Dictionary<string, HealthCheckResult> CheckAll()
+    public HealthCheckResult CheckAll()
     {
-        Dictionary<string, HealthCheckResult> results = new();
+        var results = _healthChecks.Select(check => check.Value.CheckHealth()).ToList();
 
-        foreach (var check in _healthChecks)
-        {
-            results.Add(check.Key, check.Value.CheckHealth());
-        }
-
-        return results;
+        return results.All(h => h.IsHealthy) ? HealthCheckResult.Healthy() : HealthCheckResult.Unhealthy();
     }
 }

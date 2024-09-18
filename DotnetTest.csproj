@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="JsonWebToken" Version="1.9.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="PipelineNet" Version="0.10.1" />
     <PackageReference Include="Wasi.Sdk" Version="0.1.1" />
     <PackageReference Include="Fermyon.Spin.Sdk" Version="0.1.0-alpha2" />
@@ -12,6 +14,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <PublishTrimmed>false</PublishTrimmed>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
   <PropertyGroup>

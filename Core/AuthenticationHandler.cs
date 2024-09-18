@@ -1,11 +1,11 @@
 ﻿using System.Net;
 using System.Reflection;
 using System.Security.Principal;
+using DotnetTest.Core.Attributes;
 using Fermyon.Spin.Sdk;
 using PipelineNet.Middleware;
-using Project.Core.Attributes;
 
-namespace Project.Core;
+namespace DotnetTest.Core;
 
 public class AuthenticationHandler : IMiddleware<HttpContext>
 {
