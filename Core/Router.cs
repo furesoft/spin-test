@@ -110,7 +110,15 @@ public static class Router
                 continue;
             }
 
-            InjectRequest(context, param, args);
+            if (InjectRequest(context, param, args))
+            {
+                continue;
+            }
+
+            if (InjectBody(context, param, args))
+            {
+                continue;
+            }
 
             args.Add(param.HasDefaultValue ? param.DefaultValue : null);
         }
@@ -118,12 +126,39 @@ public static class Router
         return args;
     }
 
-    private static void InjectRequest(HttpContext context, ParameterInfo param, List<object> args)
+    private static bool InjectBody(HttpContext context, ParameterInfo parameterInfo, List<object> args)
+    {
+        var attr = parameterInfo.GetCustomAttribute<RequestBodyAttribute>();
+        if (attr is not null)
+        {
+            if (parameterInfo.ParameterType == typeof(byte[]))
+            {
+                args.Add(context.Request.Body.AsBytes().ToArray());
+            }
+            if (parameterInfo.ParameterType == typeof(string))
+            {
+                args.Add(context.Request.Body.AsString());
+            }
+            else
+            {
+                args.Add(JsonSerializer.Deserialize(context.Request.Body.AsString(), parameterInfo.ParameterType));
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private static bool InjectRequest(HttpContext context, ParameterInfo param, List<object> args)
     {
         if (param.ParameterType == typeof(HttpRequest))
         {
             args.Add(context.Request);
+            return true;
         }
+
+        return false;
     }
 
     private static bool AddHeader(ParameterInfo parameterInfo, List<object> args, IReadOnlyDictionary<string,string> requestHeaders)
