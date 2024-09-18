@@ -36,6 +36,7 @@ public static class Handler
     {
         Router.Middleware.Add<AuthenticationHandler>();
 
-        Router.RegisterController<TestController>();
+        Router.RegisterController<TestController>(); 
+        Router.RegisterController<Project.Core.Health.HealthController>();
     }
 }

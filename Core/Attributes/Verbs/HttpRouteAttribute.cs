@@ -2,7 +2,7 @@
 
 namespace Project.Core.Attributes.Verbs;
 
-[AttributeUsage(AttributeTargets.Method, Inherited = false)]
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = false)]
 public class HttpRouteAttribute(string route, HttpMethod method) : Attribute
 {
     public string Route { get; } = route;

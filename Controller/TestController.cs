@@ -29,4 +29,10 @@ public class TestController
     {
         return "aGVsbG93b3JsZA==";
     }
+
+    [HttpGet("/body")]
+    public string Body([RequestBody] string body)
+    {
+        return body;
+    }
 }
