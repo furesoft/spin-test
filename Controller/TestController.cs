@@ -18,9 +18,15 @@ public class TestController
     }
 
     [HttpGet("/v/{username}")]
-    [Authorization("Admin")]
+    [Authorization("admin")]
     public string GetTestAuth([PathParameter] string username, [Header("accept")] string password, [PathQuery("q")] string q)
     {
-        return q;
+        return "Erfolgreich eingeloogt";
+    }
+
+    [HttpGet("/auth")]
+    public string Auth()
+    {
+        return "aGVsbG93b3JsZA==";
     }
 }

@@ -39,6 +39,8 @@ public static class Router
                 RegisterRoute(routeAttribute.Method, routeAttribute.Route, (req, routeParams) =>
                 {
                     var context = new HttpContext(req, new HttpResponse(), method, new Uri("http://localhost/" + req.Url));
+                    context.Query = HttpUtility.ParseQueryString(context.Url.Query.Split('?').LastOrDefault() ?? "");
+                    context.Controller = controllerInstance;
 
                     Middleware.Execute(context);
 
@@ -85,16 +87,20 @@ public static class Router
         var methodParams = method.GetParameters();
         var args = new List<object>();
 
-        var queryParams = HttpUtility.ParseQueryString(context.Url.Query.Split('?').LastOrDefault() ?? "");
-
         foreach (var param in methodParams)
         {
+            if (param.ParameterType == typeof(HttpContext))
+            {
+                args.Add(context);
+                continue;
+            }
+
             if (AddPathParameter(param, args, routeParams))
             {
                 continue;
             }
 
-            if (AddQueryParameter(param, args, queryParams))
+            if (AddQueryParameter(param, args, context.Query))
             {
                 continue;
             }

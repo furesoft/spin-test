@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Specialized;
+using System.Reflection;
 using System.Security.Principal;
 using Fermyon.Spin.Sdk;
 
@@ -9,7 +10,10 @@ public class HttpContext(HttpRequest request, HttpResponse response, MethodInfo 
     public HttpRequest Request { get; } = request;
     public HttpResponse Response { get; set; } = response;
     public MethodInfo Method { get; } = method;
+    public object Controller { get; set; }
     public Uri Url { get; } = url;
 
-    public IIdentity Identity { get; set; }
+    public NameValueCollection Query;
+
+    public IPrincipal Identity { get; set; }
 }
