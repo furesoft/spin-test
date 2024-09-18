@@ -28,6 +28,7 @@ public static class Router
     {
         var methods = typeof(T).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
         var controllerInstance = ServiceContainer.Current.GetService(typeof(T));
+        var controllerRouteAttribute = typeof(T).GetCustomAttribute<HttpRouteAttribute>();
 
         foreach (var method in methods)
         {
@@ -35,7 +36,7 @@ public static class Router
 
             if (routeAttribute != null)
             {
-                RegisterRoute(routeAttribute.Method, routeAttribute.Route, (req, routeParams) =>
+                RegisterRoute(routeAttribute.Method, controllerRouteAttribute?.Route + routeAttribute.Route, (req, routeParams) =>
                 {
                     var context = new HttpContext(req, new HttpResponse(), method, new Uri("http://localhost/" + req.Url));
                     context.Query = HttpUtility.ParseQueryString(context.Url.Query.Split('?').LastOrDefault() ?? "");

@@ -3,4 +3,3 @@
 [-] add auth sample
 [-] add httpexception
 [-] add health check
-[-] implement controller path
