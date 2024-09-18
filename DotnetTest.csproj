@@ -3,9 +3,6 @@
   <ItemGroup>
     <PackageReference Include="PipelineNet" Version="0.10.1" />
     <PackageReference Include="Wasi.Sdk" Version="0.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Fermyon.Spin.Sdk" Version="0.1.0-alpha2" />
   </ItemGroup>
 
@@ -19,6 +16,7 @@
 
   <PropertyGroup>
       <UseWizer>false</UseWizer>
+      <WasmEnableInvariantGlobalization>false</WasmEnableInvariantGlobalization>
+      <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
-
 </Project>

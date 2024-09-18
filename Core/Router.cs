@@ -19,6 +19,13 @@ public static class Router
 
     public static readonly IPipeline<HttpContext> Middleware = new Pipeline<HttpContext>(new ActivatorMiddlewareResolver());
 
+    static JsonSerializerOptions options = new JsonSerializerOptions
+    {
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+        WriteIndented = true,
+        PropertyNameCaseInsensitive = true
+    };
+
     public static void RegisterRoute(HttpMethod method, string urlPattern,
         Func<HttpRequest, Dictionary<string, string>, HttpResponse> handler)
     {
@@ -28,7 +35,7 @@ public static class Router
     public static void RegisterController<T>()
     {
         var methods = typeof(T).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
-        var controllerInstance = Container.Shared.GetService(typeof(T));
+        var controllerInstance = ServiceContainer.Current.GetService(typeof(T));
 
         foreach (var method in methods)
         {
@@ -72,7 +79,7 @@ public static class Router
         }
         else
         {
-            response.BodyAsString = JsonSerializer.Serialize(result);
+            response.BodyAsString = JsonSerializer.Serialize(result, options);
             response.Headers = new Dictionary<string, string>
             {
                 { "Content-Type", "application/json" }
@@ -141,7 +148,7 @@ public static class Router
             }
             else
             {
-                args.Add(JsonSerializer.Deserialize(context.Request.Body.AsString(), parameterInfo.ParameterType));
+                args.Add(JsonSerializer.Serialize(context.Request.Body.AsString(), parameterInfo.ParameterType, options));
             }
 
             return true;

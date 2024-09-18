@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace Project.Core;
 
@@ -224,6 +225,7 @@ public class ServiceContainer : ServiceContainer.IScope
             => _registerFactory(lifetime => lifetime.GetServicePerScope(_itemType, _factory));
     }
 }
+
 public static class ServiceContainerExtensions
 {
     public static void RegisterForPlatform<T>(this ServiceContainer scope, OSPlatform platform, T impl)

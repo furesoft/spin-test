@@ -33,7 +33,9 @@ public static class Handler
     }
 
     static Handler()
-    {
+    {    
+        ServiceContainer.Current.Register<Project.Core.Health.HealthCheckManager> ();
+
         Router.Middleware.Add<AuthenticationHandler>();
 
         Router.RegisterController<TestController>(); 
