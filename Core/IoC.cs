@@ -124,7 +124,12 @@ public class ServiceContainer : ServiceContainer.IScope
             // If no public constructor found, search for an internal constructor
             constructors = itemType.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
         }
-        var constructor = constructors.First();
+        var constructor = constructors.FirstOrDefault();
+
+        if (constructor == null)
+        {
+            return (lifetime) => Activator.CreateInstance(itemType);
+        }
 
         // Compile constructor call as a lambda expression
         var arg = Expression.Parameter(typeof(ILifetime));

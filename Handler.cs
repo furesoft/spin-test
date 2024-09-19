@@ -35,6 +35,7 @@ public static class Handler
 
     static Handler()
     {
+        ServiceContainer.Current.Register<ITokenValidator, DefaultTokenValidator> ();
         ServiceContainer.Current.Register<HealthCheckManager> ();
 
         Router.Middleware.Add<AuthenticationHandler>();
