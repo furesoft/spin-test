@@ -3,3 +3,4 @@
 [-] add auth sample
 [-] add httpexception
 [-] add health check
+[ ] make injecting mandatotory or optional (required on attribute) 

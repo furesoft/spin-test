@@ -30,7 +30,7 @@ public class TestController
         return "aGVsbG93b3JsZA==";
     }
 
-    [HttpGet("/body")]
+    [HttpPost("/body")]
     public string Body([RequestBody] string body)
     {
         return body;
