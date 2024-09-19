@@ -15,5 +15,5 @@ public class HttpContext(HttpRequest request, HttpResponse response, MethodInfo 
 
     public NameValueCollection Query;
 
-    public IPrincipal Identity { get; set; }
+    public IPrincipal Principal { get; set; }
 }

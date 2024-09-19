@@ -33,7 +33,7 @@ public class AuthenticationHandler : IMiddleware<HttpContext>
 
             if (validator.Validate(token))
             {
-                context.Identity = new GenericPrincipal(new GenericIdentity("admin"), ["admin"]);
+                context.Principal = new GenericPrincipal(new GenericIdentity("admin"), ["admin"]);
             }
             else
             {

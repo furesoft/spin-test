@@ -1,5 +1,7 @@
 ﻿using DotnetTest.Core.Attributes;
 using DotnetTest.Core.Attributes.Verbs;
+using DotnetTest.Core;
+using System.Security.Principal;
 
 namespace DotnetTest.Controller;
 
@@ -19,9 +21,10 @@ public class TestController
 
     [HttpGet("/v/{username}")]
     [Authorization("admin")]
-    public string GetTestAuth([PathParameter] string username, [Header("accept")] string password, [PathQuery("q")] string q)
+    public string GetTestAuth(HttpContext context, [PathParameter] string username, [Header("accept")] string password, [PathQuery("q")] string q)
     {
-        return "Erfolgreich eingeloogt";
+        var identity = (GenericIdentity)context.Principal.Identity;
+        return "Willkommen " + identity.Name;
     }
 
     [HttpGet("/auth")]
