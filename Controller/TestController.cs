@@ -20,7 +20,7 @@ public class TestController
     }
 
     [HttpGet("/v/{username}")]
-    [Authorization("admin")]
+    //[Authorization("admin")]
     public string GetTestAuth(HttpContext context, [PathParameter] string username, [Header("accept")] string password, [PathQuery("q")] string q)
     {
         var identity = (GenericIdentity)context.Principal.Identity;

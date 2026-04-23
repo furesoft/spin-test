@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Web;
 using DotnetTest.Core.Attributes;
 using DotnetTest.Core.Attributes.Verbs;
@@ -8,20 +9,22 @@ using Fermyon.Spin.Sdk;
 using Newtonsoft.Json;
 using PipelineNet.MiddlewareResolver;
 using PipelineNet.Pipelines;
+using Tavis.UriTemplates;
 using HttpMethod = Fermyon.Spin.Sdk.HttpMethod;
 
 namespace DotnetTest.Core;
 
 public static class Router
 {
-    private static readonly Dictionary<(HttpMethod, string), Func<HttpRequest, Dictionary<string, string>, HttpResponse>> Routes = new();
+    private static readonly Dictionary<(HttpMethod, UriTemplate), Func<HttpRequest, IDictionary<string, object>, HttpResponse>> Routes = new();
 
     public static readonly IPipeline<HttpContext> Middleware = new Pipeline<HttpContext>(new ActivatorMiddlewareResolver());
 
     public static void RegisterRoute(HttpMethod method, string urlPattern,
-        Func<HttpRequest, Dictionary<string, string>, HttpResponse> handler)
+        Func<HttpRequest, IDictionary<string, object>, HttpResponse> handler)
     {
-        Routes[(method, urlPattern)] = handler;
+        var template = new UriTemplate(urlPattern);
+        Routes[(method, template)] = handler;
     }
 
     public static void RegisterController<T>()
@@ -90,7 +93,7 @@ public static class Router
         return response;
     }
 
-    private static IEnumerable<object> GetMethodParameters(MethodInfo method, HttpContext context, Dictionary<string, string> routeParams)
+    private static IEnumerable<object> GetMethodParameters(MethodInfo method, HttpContext context, IDictionary<string, object> routeParams)
     {
         var methodParams = method.GetParameters();
         var args = new List<object>();
@@ -203,7 +206,7 @@ public static class Router
         return false;
     }
 
-    private static bool AddPathParameter(ParameterInfo parameterInfo, List<object> args, Dictionary<string, string> routeParams)
+    private static bool AddPathParameter(ParameterInfo parameterInfo, List<object> args, IDictionary<string, object> routeParams)
     {
         var attr = parameterInfo.GetCustomAttribute<PathParameterAttribute>();
         if (attr is not null)
@@ -220,53 +223,24 @@ public static class Router
         return false;
     }
 
-    private static bool TryMatchUrlPattern(string urlPattern, string requestUrl, out Dictionary<string, string> routeParams)
-    {
-        routeParams = new Dictionary<string, string>();
-
-        if (urlPattern == requestUrl)
-        {
-            return true;
-        }
-
-        var patternParts = urlPattern.Split('/', StringSplitOptions.RemoveEmptyEntries);
-        var urlParts = requestUrl.Split('/', StringSplitOptions.RemoveEmptyEntries);
-
-        if (patternParts.Length != urlParts.Length)
-        {
-            return false;
-        }
-
-        for (int i = 0; i < patternParts.Length; i++)
-        {
-            if (patternParts[i] == urlParts[i])
-            {
-                continue;
-            }
-
-            if (patternParts[i].StartsWith('{') && patternParts[i].EndsWith('}'))
-            {
-                var paramName = patternParts[i][1..^1];
-                routeParams[paramName] = urlParts[i];
-            }
-            else if (patternParts[i] != urlParts[i])
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public static HttpResponse Route(HttpRequest request)
     {
         foreach (var route in Routes)
         {
-            var ((method, urlPattern), handler) = route;
+            var ((method, template), handler) = route;
 
-            if (method == request.Method && TryMatchUrlPattern(urlPattern, request.Url, out var routeParams))
+            if (method != request.Method) continue;
+
+            var parameters = template.GetParameters(new(request.Url), QueryStringParameterOrder.Any);
+
+            Console.WriteLine("request.Url: " + request.Url);
+
+            var k = UriTemplate.CreateMatchingRegex(template.ToString());
+            Console.WriteLine(k);
+            if (Regex.IsMatch(request.Url, k))
             {
-                return handler(request, routeParams);
+                Console.WriteLine("matched "  + request.Url);
+                return handler(request, parameters);
             }
         }
 
