@@ -211,7 +211,13 @@ public static class Router
 
     public static HttpResponse Route(HttpRequest request)
     {
-        foreach (var route in Routes)
+        // Sort routes by specificity (longer templates first) to match more specific routes before generic ones
+        var sortedRoutes = Routes
+            .OrderByDescending(r => r.Key.Item2.ToString().Length)
+            .ThenByDescending(r => r.Key.Item2.ToString().Count(c => c == '{'))
+            .ToList();
+
+        foreach (var route in sortedRoutes)
         {
             var ((method, template), handler) = route;
 
