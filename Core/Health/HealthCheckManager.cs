@@ -16,10 +16,13 @@ public class HealthCheckManager
         _healthChecks.Add(name, healthCheck);
     }
 
-    public HealthCheckResult CheckAll()
+    public AggregatedHealthCheckResult CheckAll()
     {
-        var results = _healthChecks.Select(check => check.Value.CheckHealth()).ToList();
+        var subsystemResults = _healthChecks
+            .Select(check => new SubsystemHealthCheckResult(check.Key, check.Value.CheckHealth()))
+            .ToArray();
 
-        return results.All(h => h.IsHealthy) ? HealthCheckResult.Healthy() : HealthCheckResult.Unhealthy();
+        var isHealthy = subsystemResults.All(s => s.IsHealthy);
+        return new AggregatedHealthCheckResult(isHealthy, subsystemResults);
     }
 }
