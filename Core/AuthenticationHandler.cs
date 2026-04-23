@@ -29,11 +29,11 @@ public class AuthenticationHandler : IMiddleware<HttpContext>
         if (authAttribute != null)
         {
             var token = context.Request.Headers["Authorization"] ?? string.Empty;
-            var validator = ServiceContainer.Current.Resolve<ITokenValidator>();
+            var validator = ServiceContainer.Current.Resolve<ITokenHandler>();
 
-            if (validator.Validate(token))
+            if (validator.Handle(token, out var principal))
             {
-                context.Principal = new GenericPrincipal(new GenericIdentity("admin"), ["admin"]);
+                context.Principal = principal;
             }
             else
             {
