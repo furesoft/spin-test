@@ -1,8 +1,6 @@
-﻿using System.Collections.Specialized;
-using System.Net;
+﻿using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Web;
 using DotnetTest.Core.Attributes;
 using DotnetTest.Core.Attributes.Verbs;
 using Fermyon.Spin.Sdk;
@@ -41,21 +39,34 @@ public static class Router
             {
                 RegisterRoute(routeAttribute.Method, controllerRouteAttribute?.Route + routeAttribute.Route, (req, routeParams) =>
                 {
-                    var context = new HttpContext(req, new HttpResponse(), method, new Uri("http://localhost/" + req.Url));
-                    context.Query = HttpUtility.ParseQueryString(context.Url.Query.Split('?').LastOrDefault() ?? "");
-                    context.Controller = controllerInstance;
-
-                    Middleware.Execute(context);
-
-                    if (context.Response.StatusCode == 0)
+                    try
                     {
-                        var parameters = GetMethodParameters(method, context, routeParams);
-                        var response = method.Invoke(controllerInstance, parameters.ToArray());
+                        var context = new HttpContext(req, new HttpResponse(), method,
+                            new Uri("http://localhost/" + req.Url))
+                        {
+                            Controller = controllerInstance
+                        };
 
-                        context.Response = SetBody(context.Response, response);
+                        Middleware.Execute(context);
+
+                        if (context.Response.StatusCode == 0)
+                        {
+                            var parameters = GetMethodParameters(method, context, routeParams);
+                            var response = method.Invoke(controllerInstance, parameters.ToArray());
+
+                            context.Response = SetBody(context.Response, response);
+                        }
+
+                        return context.Response;
                     }
-
-                    return context.Response;
+                    catch (Exception ex)
+                    {
+                        return new HttpResponse()
+                        {
+                            StatusCode = HttpStatusCode.BadGateway,
+                            BodyAsString = ex.ToString()
+                        };
+                    }
                 });
             }
         }
@@ -106,12 +117,7 @@ public static class Router
                 continue;
             }
 
-            if (AddPathParameter(param, args, routeParams))
-            {
-                continue;
-            }
-
-            if (AddQueryParameter(param, args, context.Query))
+            if (AddParameter(param, args, routeParams))
             {
                 continue;
             }
@@ -189,35 +195,15 @@ public static class Router
         return false;
     }
 
-    private static bool AddQueryParameter(ParameterInfo parameterInfo, List<object> args, NameValueCollection queryParams)
+    private static bool AddParameter(ParameterInfo parameterInfo, List<object> args,
+        IDictionary<string, object> routeParams)
     {
-        var attr = parameterInfo.GetCustomAttribute<PathQueryAttribute>();
-        if (attr is not null)
+        var name = parameterInfo.Name!;
+
+        if (routeParams.TryGetValue(name, out var param))
         {
-            var name = attr.Name ?? parameterInfo.Name;
-
-            if (queryParams[name] != null)
-            {
-                args.Add(Convert.ChangeType(queryParams[name], parameterInfo.ParameterType));
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private static bool AddPathParameter(ParameterInfo parameterInfo, List<object> args, IDictionary<string, object> routeParams)
-    {
-        var attr = parameterInfo.GetCustomAttribute<PathParameterAttribute>();
-        if (attr is not null)
-        {
-            var name = attr.Name ?? parameterInfo.Name;
-
-            if (routeParams.TryGetValue(name, out var param))
-            {
-                args.Add(Convert.ChangeType(param, parameterInfo.ParameterType)!);
-                return true;
-            }
+            args.Add(Convert.ChangeType(param, parameterInfo.ParameterType)!);
+            return true;
         }
 
         return false;
@@ -231,15 +217,10 @@ public static class Router
 
             if (method != request.Method) continue;
 
-            var parameters = template.GetParameters(new(request.Url), QueryStringParameterOrder.Any);
-
-            Console.WriteLine("request.Url: " + request.Url);
-
-            var k = UriTemplate.CreateMatchingRegex(template.ToString());
-            Console.WriteLine(k);
-            if (Regex.IsMatch(request.Url, k))
+            var pattern = UriTemplate.CreateMatchingRegex(template.ToString());
+            if (Regex.IsMatch(request.Url, pattern))
             {
-                Console.WriteLine("matched "  + request.Url);
+                var parameters = template.GetParameters(new(request.Url), QueryStringParameterOrder.Any);
                 return handler(request, parameters);
             }
         }

@@ -21,10 +21,10 @@ public class TestController
 
     [HttpGet("/v/{username}")]
     //[Authorization("admin")]
-    public string GetTestAuth(HttpContext context, [PathParameter] string username, [Header("accept")] string password, [PathQuery("q")] string q)
+    public string GetTestAuth(HttpContext context, string username, [Header("accept")] string accept)
     {
-        var identity = (GenericIdentity)context.Principal.Identity;
-        return "Willkommen " + identity.Name;
+        var identity = context.Principal?.Identity?.Name ?? username;
+        return "Willkommen " + identity + ", you sent accept header: " + accept;
     }
 
     [HttpGet("/auth")]

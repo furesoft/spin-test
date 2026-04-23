@@ -13,7 +13,5 @@ public class HttpContext(HttpRequest request, HttpResponse response, MethodInfo 
     public object Controller { get; set; }
     public Uri Url { get; } = url;
 
-    public NameValueCollection Query;
-
     public IPrincipal Principal { get; set; }
 }
