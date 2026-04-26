@@ -2,6 +2,7 @@
 using DotnetTest.Controller;
 using DotnetTest.Core;
 using DotnetTest.Core.Health;
+using DotnetTest.Core.JWT;
 using Fermyon.Spin.Sdk;
 
 namespace DotnetTest;
@@ -36,7 +37,7 @@ public static class Handler
 
     static Handler()
     {
-        ServiceContainer.Current.Register<ITokenHandler, DefaultTokenHandler>();
+        ServiceContainer.Current.Register<ITokenHandler, JWTTokenValidator>();
         ServiceContainer.Current.Register<HealthCheckManager>();
 
         Router.Middleware.Add<AuthenticationHandler>();

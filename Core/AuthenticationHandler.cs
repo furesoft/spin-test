@@ -31,7 +31,7 @@ public class AuthenticationHandler : IMiddleware<HttpContext>
             var token = context.Request.Headers["Authorization"] ?? string.Empty;
             var validator = ServiceContainer.Current.Resolve<ITokenHandler>();
 
-            if (validator.Handle(token, out var principal))
+            if (validator.Validate(token, out var principal))
             {
                 context.Principal = principal;
             }
